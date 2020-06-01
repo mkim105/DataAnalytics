@@ -1,0 +1,50 @@
+HW1
+
+-6 => Q2. Variance, Standard Deviation ( Data is a sample distribution and you need to produce sample statistics)????? and Quartile 3 are incorrect!
+
+-2 => Q4. part 2. Class Relative Frequency is not produced!
+
+HW2
+
+1.1) They can be used to determine rejection vs non-rejection area!(-2)
+
+2.a) q1 = 3.2 , q3 = 5.55 (-4), ?it is  asymmetric because ?????????????median is closer to Q3 and it is negative skewed! (-2)?
+
+2.b) The assumption is that population is normal! If population is normal, sample mean is also normal. If population is not normal, sample size must be large enough then it could be normal.(-5)
+
+2.c) T-value (0.05,14) = ¡¾ 2.145 => Estimation= 4.287 ¡¾ (2.145) (1.64 / square root of 15 )= (3.4,5.2)    (-5)
+
+2.d) p-value = 0.115 > 0.05 (-2)
+
+t-value = ¡¾ 2.145(-2)
+
+For the next assignments, please type your answers!
+
+HW3
+
+Q1. Range = 108, Max = 120, ???????(-2)
+
+HW4
+
+Q1. Range = 108, Max = 120, ???????(-2)
+
+HW5
+
+
+4. Individual parameter test: Based on initial model, since the p-value for footage is less than 0.05, we conclude our null hypothesis (corresponding beta value = 0) is rejected and we accept alternative hypothesis that corresponding coefficient value is not zero and predictor(footage) is useful.  I??f you are using p-vale in the t-test as metrics, you need to drop corresponding x variable one by one, starting with the parameter with highest p-value???????!(-2)
+
+11. Rmse value incorrect! Number of row should be included in the sqrt(). (-0.5)?????????
+
+
+HW6
+
+
+
+HW7
+
+You need to apply feature selection based on p-value, AIC or adj-R2 feature elimination criteria!????????????????
+
+
+HW8
+
+HW9

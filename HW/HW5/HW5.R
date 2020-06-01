@@ -1,0 +1,82 @@
+setwd('C:/users/mg/Desktop/Data Analytics/HW/HW5')
+getwd()
+
+mydata = read.table("HW5_DATA.txt", header = T)
+
+sales = mydata$sales
+title = mydata$title
+footage = mydata$footage
+pc = mydata$pc
+apple = mydata$apple
+
+# plot about whole data sets.
+plot(mydata)
+plot(title, sales)
+plot(footage, sales)
+plot(pc, sales)
+plot(apple, sales)
+
+# Collinearity problem detections
+# If there are two factors with strong correlations, i should remove one of them.
+cor(cbind(sales,title,footage,pc,apple))
+
+# Split data for hold-out evaluation
+train.data = mydata[1:36,] # 70% of data set for training data
+test.data = mydata[37:52,] # 30% of data set for testing data
+
+# Build models
+# Feature Selection // to distinguish useful x variables or not.
+
+# Q4
+# Based on F-test, we know whether at least one x variable is useful to predict y.
+# F-test & Individual parameter test with backward elimination #1
+full =  lm(sales~title+footage+pc+apple, data=train.data)
+summary(full)
+
+# Q5
+# Individual parameter test with backward elimination #2
+# I removed title because title has biggest P-value among X variables.
+m1 =  lm(sales~footage+pc+apple, data=train.data)
+summary(m1)
+
+# Q.9 : Residual Analysis
+# 1) Validate the constant variance
+# Standard model is m1
+res = rstandard(m1)
+plot( fitted(m1), res, main="Predicted vs residual plot")
+abline(a=0, b=0, col='red')
+# 2) Validate the linearity relationship
+plot(train.data$footage, res, main="footage vs reisudal plot")
+abline(a=0, b=0, col='red')
+
+plot(train.data$pc, res, main="pc vs residual plot")
+abline(a=0, b=0, col='red')
+
+plot(train.data$apple, res, main="apple vs residual plot")
+abline(a=0, b=0, col='red')
+# 3) Validate normal distribution of residuals
+qqnorm(res)
+qqline(res, col=2)
+
+shapiro.test(res) #If p-value>0.05, we say it follows normal distribution at 95% confidence level
+# 4) Identify potential outliers
+
+
+
+# Q.10 : Build a base model by using pc as the x variable.
+base = lm(sales~pc, data=train.data)
+full = lm(sales~title+footage+pc+apple, data=train.data)
+Q10 = step(base, scope=list(upper=full, lower=~1), direction="forward", trace=T)
+summary(Q10)
+
+# Q.11 : Calculate the RMSE 
+# m2 = final reduced regression model
+# Q10 = model in Q10
+# Bese model minimizeds RMSE
+y5 = predict.glm(m1,test.data)
+y10 = predict.glm(Q10,test.data)
+y=test.data[,2]
+rmse_5 = sqrt((y-y5)%*%(y-y5))/nrow(test.data)
+rmse_10 = sqrt((y-y10)%*%(y-y10))/nrow(test.data)
+rmse_5
+rmse_10
